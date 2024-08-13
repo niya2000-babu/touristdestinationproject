@@ -1,0 +1,93 @@
+
+
+
+
+
+
+
+
+<!--&lt;!&ndash; templates/destinations_list.html &ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Destinations List</title>-->
+<!--    <link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
+
+<!--    <style>-->
+<!--        /* static/css/styles.css */-->
+
+<!--body {-->
+<!--    font-family: Arial, sans-serif;-->
+<!--    margin: 20px;-->
+<!--}-->
+
+<!--h1 {-->
+<!--    color: #333;-->
+<!--}-->
+
+<!--table {-->
+<!--    width: 100%;-->
+<!--    border-collapse: collapse;-->
+<!--}-->
+
+<!--th, td {-->
+<!--    border: 1px solid #ddd;-->
+<!--    padding: 8px;-->
+<!--    text-align: left;-->
+<!--}-->
+
+<!--th {-->
+<!--    background-color: #f2f2f2;-->
+<!--}-->
+
+<!--img {-->
+<!--    width: 100px;-->
+<!--    height: auto;-->
+<!--}-->
+
+<!--    </style>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Destinations List</h1>-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>Place Name</th>-->
+<!--            <th>Weather</th>-->
+<!--            <th>Location (State)</th>-->
+<!--            <th>Location (District)</th>-->
+<!--            <th>Google Map Link</th>-->
+<!--            <th>Image</th>-->
+<!--            <th>Description</th>-->
+<!--        </tr>-->
+<!--        {% for destination in destinations %}-->
+<!--        <tr>-->
+<!--            <td>{{ destination.place_name }}</td>-->
+<!--            <td>{{ destination.weather }}</td>-->
+<!--            <td>{{ destination.location_state }}</td>-->
+<!--            <td>{{ destination.location_district }}</td>-->
+<!--            <td><a href="{{ destination.google_map_link }}">Map</a></td>-->
+<!--            <td><img src="{{ destination.image.url }}" alt="{{ destination.place_name }}"></td>-->
+<!--            <td>{{ destination.description }}</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
+<!--    </table>-->
+<!--</body>-->
+<!--</html>-->
+<!-- templates/destinations/detail.html -->
+{% extends 'index222.html' %}
+{% load static %}
+{% block content %}
+
+
+    <h1>{{ destination.place_name }}</h1>
+    <p>Weather: {{ destination.weather }}</p>
+    <p>Location: {{ destination.state }}, {{ destination.district }}</p>
+    <p><a href="{{ destination.google_map_link }}">Google Map Link</a></p>
+    <img src="{{ destination.image.url }}" alt="{{ destination.place_name }}">
+    <p>{{ destination.description }}</p>
+    <a href="{% url 'destination-list-create' %}">Back to List</a>
+
+{% endblock %}

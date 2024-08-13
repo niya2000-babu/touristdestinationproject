@@ -1,0 +1,19 @@
+<!-- templates/destinations/detail.html -->
+{% extends 'index222.html' %}
+{% load static %}
+{% block content %}
+<div style="width:100%;height:300px;">
+    <h1><b style="color:white;">{{ destination.place_name }}</b> </h1>
+    <img src="{{ destination.image.url }}" alt="{{ destination.place_name }}">
+    <p  style="color:white;">Weather: {{ destination.weather }}</p>
+    <p  style="color:white;">Location: {{ destination.state }}, {{ destination.district }}</p>
+    <p  style="color:white;"><a href="{{ destination.google_map_link }}">Google Map Link</a></p>
+    <p  style="color:white;">{{ destination.description }}</p>
+    <button ><a href="{% url 'create' %}" style="color:black;" >Back to List</a><br></button>
+<!--    <a href="{% url 'destination-update' destination.id %}">Edit</a>-->
+<!--    <form method="POST" action="{% url 'destination-delete' destination.id %}">-->
+<!--        {% csrf_token %}-->
+<!--        <button type="submit">Delete</button>-->
+<!--    </form>-->
+    {% endblock %}
+</div>

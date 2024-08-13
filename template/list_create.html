@@ -1,0 +1,37 @@
+{% extends 'index222.html' %}
+{% load static %}
+{% block content %}
+
+    <h1 style="color:white; text-align:center;">TOURIST DESTINATIONS</h1>
+<div  class="transboxstyle" style=" background:#ffffff;width:100%; height:1100px;">
+        <div id="destination-list" class="desc animate-box ">
+            {% for destination in destinations %}
+                <div class="destination" style=" background:#ffffff;width:30%; height:300px; float:left;">
+                    <img src="{{ destination.image.url }}" alt="{{ destination.place_name }} " style="width:80%;">
+                    <h2>{{ destination.place_name }}</h2>
+<!--                    <p>{{ destination.description }}</p>-->
+                    <a href="{% url 'destination-detail' destination.id %}" style="color:black;">View Details</a><br>
+                    <a href="{% url 'destination-update' destination.id %}" style="color:black;">Edit</a><br>
+                    <form method="POST" action="{% url 'destination-delete' destination.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+ <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>  <br>
+
+
+
+        <div id="create-destination"style=" background:#adad85;width:100%; height:1100px;margin-top: 20px;;">
+            <h2 style="color:black;margin-top:250px;">Add New Destination</h2>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit">Add</button>
+            </form>
+        </div>
+</div>
+{% endblock %}
+
